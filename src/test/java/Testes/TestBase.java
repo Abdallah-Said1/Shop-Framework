@@ -3,6 +3,7 @@ package Testes;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.ITestResult;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase extends AbstractTestNGCucumberTests {
 public WebDriver driver;
-    @Parameters({"Brwoser"})
+    @Parameters({"browser"})
     @BeforeClass
 
     public void OpenBrwoser(@Optional("chrome") String BrwosrerName)
@@ -21,6 +22,7 @@ public WebDriver driver;
     if (BrwosrerName.equalsIgnoreCase("chrome"))
     {
     driver=new ChromeDriver();
+
     }
    else if (BrwosrerName.equalsIgnoreCase("firefox"))
     {
@@ -29,6 +31,13 @@ public WebDriver driver;
     } else if (BrwosrerName.equalsIgnoreCase("ie"))
     {
     driver=new InternetExplorerDriver();
+    }
+    else if (BrwosrerName.equalsIgnoreCase("headless"))
+    {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
+        driver = new ChromeDriver(options);
     }
    driver.manage().window().maximize();
    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

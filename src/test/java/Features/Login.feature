@@ -1,10 +1,8 @@
-Feature: Loin
-  i want to check user can Login to Shop website
-
-  Scenario Outline: User Login
+Feature: UserLogin
+  User can Login to website
+  Scenario Outline:
     Given i entered data user "<email>" ,"<password>"
-    Then the User can Login Successfully
-
-  Examples:
-      | email         | password |
-      | lolo050@gmail.com | Ali@7422 |
+    Then User Login Successfully
+    Examples:
+      | email                | password |
+      | abdallah22@gmail.com | Abd@7422 |

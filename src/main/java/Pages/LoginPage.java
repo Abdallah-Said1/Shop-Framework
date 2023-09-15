@@ -7,8 +7,6 @@ import org.testng.Assert;
 
 public class LoginPage {
     WebDriver driver;
-    private final By ForgPass = By.cssSelector("a.forgot-password-link");
-
     private final By UserEmail =By.id("userEmail");
     private final By UserPassword=By.id("userPassword");
     private final  By LoginButton =By.id("login");
@@ -18,13 +16,13 @@ public class LoginPage {
     }
 
     public LoginPage LinkLoginSuccess(){
-        WebElement Inlogin =  driver.findElement(ForgPass);
-        Inlogin.isDisplayed();
-
+       WebElement login= driver.findElement(LoginButton);
+       login.isDisplayed();
         return this;
     }
 
     public Homepage Login(String Email, String Passowrd) throws InterruptedException {
+        Thread.sleep(1500);
         driver.findElement(UserEmail).sendKeys(Email);
         driver.findElement(UserPassword).sendKeys(Passowrd);
         driver.findElement(LoginButton).click();
